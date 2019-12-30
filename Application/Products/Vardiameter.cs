@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Domain;
@@ -23,7 +24,7 @@ namespace Application.Products
         
             public async Task<List<VarDiameter>> Handle(Query request, CancellationToken cancellationToken)
             {
-                var diameter = await _context.VarDiameters.ToListAsync();
+                var diameter = await _context.VarDiameters.OrderBy(p => p.Sunod).ToListAsync();
                 return diameter;
               // handler logic
             }

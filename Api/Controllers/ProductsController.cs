@@ -11,9 +11,9 @@ namespace Api.Controllers
     public class ProductsController : BaseController
     {
         [HttpGet]
-        public async Task<ActionResult<ProductDto>> Details(long grade, long diameter, long length)
+        public async Task<ActionResult<ProductDto>> Details(long grade,  long length, long diameter)
         {
-            return await Mediator.Send(new ProductDetails.Query(grade, diameter, length));
+            return await Mediator.Send(new ProductDetails.Query(grade, length ,diameter));
         }
 
         [HttpGet("lengths")]

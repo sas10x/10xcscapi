@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Domain;
@@ -23,7 +24,7 @@ namespace Application.Products
         
             public async Task<List<VarLength>> Handle(Query request, CancellationToken cancellationToken)
             {
-                var lengths = await _context.VarLengths.ToListAsync();
+                var lengths = await _context.VarLengths.OrderBy(p => p.Sunod).ToListAsync();
                 return lengths;
               // handler logic
             }

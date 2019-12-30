@@ -42,6 +42,18 @@ namespace Api
                 options.UseLazyLoadingProxies();
                 options.UseSqlServer(Configuration["Data:ConnectionString"]);
             });
+            services.AddCors(opt =>
+            {
+                opt.AddPolicy("CorsPolicy", policy =>
+                {
+                    policy
+                        .AllowAnyHeader()
+                        .AllowAnyMethod()
+                        .WithExposedHeaders("WWW-Authenticate")
+                        .WithOrigins("http://localhost:4200")
+                        .AllowCredentials();
+                });
+            });
             services.AddMediatR(typeof(List.Handler).Assembly);
             services.AddAutoMapper(typeof(List.Handler));
             services.AddMvc(opt =>
@@ -99,6 +111,7 @@ namespace Api
                 //app.UseDeveloperExceptionPage();
             }
             //app.UseHttpsRedirection();
+            app.UseCors("CorsPolicy");
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
