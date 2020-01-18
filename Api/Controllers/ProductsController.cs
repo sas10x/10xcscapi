@@ -31,5 +31,15 @@ namespace Api.Controllers
         {
             return await Mediator.Send(new Vargrade.Query());
         }
+        [HttpGet("provinces")]
+        public async Task<ActionResult<List<ProvinceDto>>> Province()
+        {
+            return await Mediator.Send(new AddressProvinces.Query());
+        }
+        [HttpGet("citys/{id}")]
+        public async Task<ActionResult<List<CityDto>>> City(long id)
+        {
+            return await Mediator.Send(new AddressCities.Query{Id = id});
+        }
     }
 }

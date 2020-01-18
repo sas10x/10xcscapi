@@ -3,6 +3,7 @@ namespace Domain
     public class Cart
     {
         public long CartId { get; set; }
+        public string ProductName { get; set; }
         public long Quantity { get; set; }
         public double Price { get; set; }
         public double Total { get; set; }
@@ -10,3 +11,4 @@ namespace Domain
         public virtual Order Order { get; set; }
     }
 }
+
