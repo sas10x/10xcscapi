@@ -23,6 +23,7 @@ namespace Application.User
             public string UserName { get; set; }
             public string Email { get; set; }
             public string Password { get; set; }
+            public string PhoneNumber { get; set; }
         }
 
         public class CommandValidator : AbstractValidator<Command>
@@ -61,11 +62,12 @@ namespace Application.User
                     DisplayName = request.DisplayName,
                     Email = request.Email,
                     UserName = request.UserName,
-                    Role = "user"
+                    PhoneNumber = request.PhoneNumber,
+                    Role = "admin"
                 };
 
                 var result = await _userManager.CreateAsync(user, request.Password);
-                await _userManager.AddToRoleAsync(user, "User");
+                await _userManager.AddToRoleAsync(user, "Admin");
                 if (result.Succeeded)
                 {
                     return new User

@@ -9,7 +9,11 @@ namespace Domain
         public string LastName { get; set; }
         public string Company { get; set; }
         public long Phone { get; set; }
+        // public long AddressId { get; set; }
+        // public virtual Address Address { get; set; }
+        public long ProvinceId { get; set; }
         public virtual Province Province { get; set; }
+        public long CityId { get; set; }
         public virtual City City { get; set; }
         public virtual AppUser User { get; set; }
         public string Street { get; set; }

@@ -9,6 +9,9 @@ namespace Domain
         public DateTime Date{ get; set; }
         public decimal Amount { get; set; }
         public virtual Address Address { get; set; }
+        
+
+        public string UserId { get; set; }
         public virtual AppUser User { get; set; }
         public virtual ICollection<Cart> Carts { get; set; }
     }
