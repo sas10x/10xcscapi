@@ -63,11 +63,11 @@ namespace Application.User
                     Email = request.Email,
                     UserName = request.UserName,
                     PhoneNumber = request.PhoneNumber,
-                    Role = "admin"
+                    Role = "user"
                 };
 
                 var result = await _userManager.CreateAsync(user, request.Password);
-                await _userManager.AddToRoleAsync(user, "Admin");
+                await _userManager.AddToRoleAsync(user, "User");
                 if (result.Succeeded)
                 {
                     return new User
@@ -75,7 +75,8 @@ namespace Application.User
                         DisplayName = user.DisplayName,
                         Token = _jwtGenerator.CreateToken(user),
                         UserName = user.UserName,
-                        Image = null
+                        Image = null,
+                        Role = user.Role
                     };
                 }
 

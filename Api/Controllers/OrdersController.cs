@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Application.Session;
 using Domain;
@@ -11,6 +12,11 @@ namespace Api.Controllers
     [AllowAnonymous]
     public class OrdersController : BaseController
     {
+        [HttpGet]
+        public async Task<ActionResult<List<OrderDto>>> List()
+        {
+            return await Mediator.Send(new ListOrder.Query());
+        }
         [HttpPost]
         public async Task<ActionResult<Order>> Create (AddOrder.Command command)
         {
