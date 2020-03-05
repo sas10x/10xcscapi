@@ -15,7 +15,7 @@ namespace Application.Shop
         public class Command : IRequest<CartDto>
         {
             public long Quantity { get; set; }
-            public double Total { get; set; }
+            public decimal Total { get; set; }
             public long Product { get; set; }
             public Guid Order { get; set; }
 

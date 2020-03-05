@@ -15,7 +15,7 @@ namespace Application.Shop
         {
             public long CartId { get; set; }
             public long Quantity { get; set; }
-            public double Total { get; set; }
+            public decimal Total { get; set; }
         }
         public class Handler : IRequestHandler<Command>
         {
