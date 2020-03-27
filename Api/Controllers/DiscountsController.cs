@@ -15,6 +15,7 @@ namespace Api.Controllers
         {
             return await Mediator.Send(new DiscountGrade.Query{Id = id});
         }
+        [Authorize(Policy = "IsUser")]
         [HttpPost]
         public async Task<ActionResult<Unit>> Create (CreateDiscount.Command command)
         {

@@ -22,6 +22,7 @@ using AutoMapper;
 using System;
 using System.Threading.Tasks;
 using Api.Middleware;
+using Microsoft.IdentityModel.Logging;
 
 namespace Api
 {
@@ -100,7 +101,9 @@ namespace Api
             services.AddTransient<IAuthorizationHandler, IsHostRequirementHandler>();
             services.AddTransient<IAuthorizationHandler, IsUserRequirementHandler>();
             
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("super secret key"));
+            // var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("super secret key"));
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["TokenKey"]));
+            // options.UseSqlServer(Configuration["Production:ConnectionString"]);
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(opt =>
                 {
@@ -126,6 +129,7 @@ namespace Api
             {
                 //app.UseDeveloperExceptionPage();
             }
+            IdentityModelEventSource.ShowPII = true; 
             //app.UseHttpsRedirection();
             app.UseCors("CorsPolicy");
             app.UseRouting();

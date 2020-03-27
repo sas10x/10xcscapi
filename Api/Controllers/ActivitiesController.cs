@@ -13,8 +13,8 @@ namespace Api.Controllers
     public class ActivitiesController : BaseController
     {
         [HttpGet]
-        //[Authorize(Policy = "IsActivityHost")]
-        [AllowAnonymous]
+        // [Authorize(Policy = "IsActivityHost")]
+        
         public async Task<ActionResult<List<ActivityDto>>> List()
         {
             return await Mediator.Send(new List.Query());

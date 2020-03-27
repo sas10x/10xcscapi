@@ -30,20 +30,11 @@ namespace Application.Session
 
             public async Task<List<OrderDto>> Handle(Query request, CancellationToken cancellationToken)
             {
-                // var user = await _context.Users.SingleOrDefaultAsync(x => x.UserName == _userAccessor.GetCurrentUsername());
-                // var attendance = await _context.UserActivities.SingleOrDefaultAsync(x => x.ActivityId == activity.Id && x.AppUserId == user.Id);
-
-                // var carts = await _context.Carts
-                //     .Where(s => s.Order.OrderId == request.Id)
-                //     .ToListAsync();
-                    
                 var user = await _context.Users.SingleOrDefaultAsync(x => x.UserName == _userAccessor.GetCurrentUsername());
-                // var orders = await _context.Orders.ToListAsync(x => x.UserId == user.Id);
                 var orders = await _context.Orders
                     .Where(s => s.User.Id == user.Id)
                     .ToListAsync();
                 return _mapper.Map<List<Order>, List<OrderDto>>(orders);
-                // return orders;
             }
 
         }
